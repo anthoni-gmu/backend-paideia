@@ -7,6 +7,9 @@ env = environ.Env()
 environ.Env.read_env()
 ENVIRONMENT = env
 
+
+import django_heroku
+
 cloudinary.config(
     cloud_name=os.environ.get('CLOUD_NAME'),
     api_key=os.environ.get('CLOUD_API_KEY'),
@@ -148,6 +151,8 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
 ]
+
+django_heroku.settings(locals())
 
 
 REST_FRAMEWORK = {
