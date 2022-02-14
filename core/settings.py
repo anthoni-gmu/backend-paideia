@@ -1,3 +1,4 @@
+import django_heroku
 from pathlib import Path
 import cloudinary
 import os
@@ -8,7 +9,6 @@ env = environ.Env()
 environ.Env.read_env()
 ENVIRONMENT = env
 
-import django_heroku
 
 cloudinary.config(
     cloud_name=os.environ.get('CLOUD_NAME'),
@@ -37,7 +37,7 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     'apps.user',
-      'drf_yasg',
+    'drf_yasg',
     # 'apps.account'
 ]
 
@@ -100,7 +100,8 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES['default'] = dj_database_url.config(
+    conn_max_age=600, ssl_require=True)
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
@@ -110,6 +111,17 @@ CORS_ORIGIN_WHITELIST = [
     'http://127.0.0.1:3000',
 
     'https://frontend-paideia.herokuapp.com',
+    'https://backend-paideia.herokuapp.com'
+]
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:8000',
+
+    'http://127.0.0.1:8000',
+    'http://127.0.0.1:3000',
+
+    'https://frontend-paideia.herokuapp.com',
+    'https://backend-paideia.herokuapp.com'
 ]
 
 
