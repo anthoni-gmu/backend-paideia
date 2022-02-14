@@ -3,6 +3,7 @@ import cloudinary
 import os
 import environ
 from datetime import timedelta
+import dj_database_url
 env = environ.Env()
 environ.Env.read_env()
 ENVIRONMENT = env
@@ -92,11 +93,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
-
 DATABASES = {
-    "default": env.db("DATABASE_URL", default="postgres:///school"),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
-DATABASES["default"]["ATOMIC_REQUESTS"] = True
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
