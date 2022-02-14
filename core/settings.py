@@ -7,7 +7,6 @@ env = environ.Env()
 environ.Env.read_env()
 ENVIRONMENT = env
 
-
 import django_heroku
 
 cloudinary.config(
@@ -205,7 +204,6 @@ DJOSER = {
         'user_delete': 'djoser.serializers.UserDeleteSerializer',
     },
 }
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
